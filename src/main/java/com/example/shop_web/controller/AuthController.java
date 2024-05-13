@@ -59,7 +59,6 @@ public class AuthController {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             UserDetailsAdapter userDetailsAdapter = (UserDetailsAdapter) userDetails;
             String token = jwtUtil.generateToken(userDetails);
-
             SignInResponse signInResponse = new SignInResponse();
             signInResponse.setUserId(userDetailsAdapter.getUserId());
             signInResponse.setUserName(userDetailsAdapter.getUsername());

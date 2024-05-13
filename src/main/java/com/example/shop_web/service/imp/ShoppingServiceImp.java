@@ -89,25 +89,17 @@ public class ShoppingServiceImp implements ShoppingService {
             throw new BaseException("RA-SP4-400");
         }
 
-        // Kiểm tra số lượng tồn kho của sản phẩm
         ProductsEntity product = cartItem.getProductsByProductId();
         int currentStock = product.getStockQuantity();
         int quantityDiff = quantity - cartItem.getOrderQuantity();
-
         if (currentStock < quantityDiff) {
             throw new BaseException("RA-SP5-400");
         }
-
-        // Cập nhật số lượng trong giỏ hàng
         cartItem.setOrderQuantity(quantity);
         shoppingCartRepository.save(cartItem);
-
-        // Cập nhật số lượng tồn kho của sản phẩm
         int remainingStock = currentStock - quantityDiff;
         product.setStockQuantity(remainingStock);
         productRepository.save(product);
-
-        // Trả về thông tin cập nhật của mục giỏ hàng
         return convertToResponse(cartItem, product);
     }
 

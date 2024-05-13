@@ -52,9 +52,9 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .requestMatchers("/auth/**",
                         "/v1/categories/**",
-                        "/v1/products/**","/v1/admin/**","/v1/user/**").permitAll()
-//                .requestMatchers("/v1/admin/**").hasRole("ADMIN")
-//                .requestMatchers("/v1/user/**").hasRole("USER")
+                        "/v1/products/**").permitAll()
+                .requestMatchers("/v1/admin/**").hasRole("ADMIN")
+                .requestMatchers("/v1/user/**").hasRole("USER")
                 .anyRequest()
                 .authenticated()
                 .and()

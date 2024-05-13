@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/v1/user")
 @AllArgsConstructor
 public class UserController {
@@ -58,7 +58,7 @@ public class UserController {
        return checkOutService.paymentInfo(addId);
     }
 
-    @GetMapping("/account1")
+    @GetMapping("/account")
     public ResponseEntity<UserResponse> showInfo() {
         UserResponse response = userService.showUser();
         if (response != null) {
